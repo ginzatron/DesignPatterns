@@ -1,0 +1,39 @@
+﻿Facade Pattern:
+Take complex subsystems and making them easier to use by implementing a Facade class with ONE interface
+
+example: A home theater class would act as a facade to lay over top all of the complex home theater subsystems that are involved
+with doing something like turning every component on to watch a movie.
+The methods will be called from the Facade which will know how to delegate to the subsystems but all the user needs to know is how to call
+HomeTheaterFacade.WathMovie()
+note: the subsystem is still available if needed to be accessed directly. the facade doesn't encapsulate the subsytems, just provides an entry
+interface
+
+The facade pattern helps us avoid tight coupling between a client and subsytems by employing the facade as a middle man that won't change as often
+as the subsystems might and thus the client can keep relyingon the facade even if the subsytme components change
+
+DESIGN PRINCIPLE HERE: LEAST KNOWLEDGE
+	talk only to your immediate friends ie. the client and the facade
+
+	Take an object
+		we should only invoke methods that 
+		- belong to that object itself
+		- are methods on objects passed in as parameters to the methods on the primary object
+		- objects the method creates or instantiates
+		- and object components
+		* Do not call methods on objects returned from methods?
+
+		example:
+		WRONG
+		public float getTemp() {
+		  Thermometer thermometer = station.GetThermometer();
+		  return thermometer.GetTemperature();
+		}
+
+		CORRECT - we've reduce the number of dependant classes
+		public float getTemp() {
+		  return station.GetTemperature();
+		}
+
+
+Caveat to the facade pattern is that you end up with lots of wrappers that complicate the code
+
